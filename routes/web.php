@@ -11,31 +11,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-/*Route::get('/', function () {
-    return view('frontpage.home');
-});*/
-Route::get('/', function () {
-    return view('frontpage.home');
-});
-Route::get('/home', function () {
-    return view('frontpage.home');
-});
+Route::get('/',['as'=>'home.index','uses'=>'HomeController@home']);
+Route::get('/products',['as'=>'products.index','uses'=>'HomeController@products']);
+Route::get('/single',['as'=>'single.index','uses'=>'HomeController@single']);
+Route::get('/login',['as'=>'login.index','uses'=>'HomeController@login']);
+Route::get('/about',['as'=>'about.index','uses'=>'HomeController@about']);
 
-Route::get('/login', function () {
-    return view('frontpage.login');
-});
-
-Route::get('/products', function () {
-    return view('frontpage.products');
-});
-
-Route::get('/single', function () {
-    return view('frontpage.single');
-});
-
-Route::get('/about', function () {
-    return view('frontpage.about');
+Route::group(['prefix' => 'admin'], function(){
+	Route::get('/', ['as'=>'admin_home.index','uses'=>'HomeController@admin_home']);
+	
 });
